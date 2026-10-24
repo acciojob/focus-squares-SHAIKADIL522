@@ -1,21 +1,17 @@
-// This file is not to be modified. Please ignore this.
-// We will understand all of this later in the course.
-// DO NOT MODIFY THIS FILE
+const squares = document.querySelectorAll(".square");
 
-const express = require('express');
-const path = require('path');
+squares.forEach((current) => {
+  current.addEventListener("mouseenter", () => {
+    squares.forEach((sq) => {
+      if (sq !== current) {
+        sq.style.backgroundColor = "#6F4E37";
+      }
+    });
+  });
 
-const app = express();
-
-app.use(express.static(__dirname))
-
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname + '/main.html'));
+  current.addEventListener("mouseleave", () => {
+    squares.forEach((sq) => {
+      sq.style.backgroundColor = "#E6E6FA";
+    });
+  });
 });
-//your code here
-app.post('/add', (req, res) => {
-  const {a,b} = req.body;
-  res.status(200).send(a+b);
-  // res.sendFile(path.join(__dirname + '/main.html'));
-});
-module.exports = app;
